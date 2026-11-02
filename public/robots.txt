@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Google / Bing / AI-search crawlers are all welcome
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 Sitemap: https://aexapharma.com/sitemap.xml

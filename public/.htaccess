@@ -1,8 +1,41 @@
+# --- Pretty URLs for prerendered pages (/about -> /about/index.html, no trailing-slash redirect) ---
+DirectorySlash Off
+DirectoryIndex index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Optional (uncomment after HTTPS + domain are final):
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://aexapharma.com%{REQUEST_URI} [L,R=301]
+  # RewriteCond %{HTTP_HOST} ^www\.aexapharma\.com$ [NC]
+  # RewriteRule ^ https://aexapharma.com%{REQUEST_URI} [L,R=301]
+
+  # Strip trailing slash (/about/ -> /about) so only one URL version exists
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # Serve prerendered folder pages
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+[^/])$ /$1/index.html [L]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
+</IfModule>
+
+# --- Speed (Core Web Vitals = ranking signal) ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml application/xml
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
 </IfModule>

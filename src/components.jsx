@@ -52,7 +52,7 @@ export function HeroArt() {
 export function Logo() {
   return (
     <Link className="logo" to="/" aria-label={COMPANY + " home"}>
-      <img src="/assets/logo.png" width="46" height="46" alt="" />
+      <img src="/assets/logo.png" width="55" height="48" alt="" />
       <span><b>AEXA</b><i>PHARMA</i></span>
     </Link>
   );
