@@ -34,7 +34,7 @@ export function usePage(title, description) {
   const { path, hash } = useLocation();
   useEffect(() => {
     const el = hash && document.getElementById(hash);
-    if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [path, hash]);
   useEffect(() => {
     document.title = title ? `${title} | Aexa Pharma` : "Aexa Pharma | WHO-GMP Pharmaceutical Manufacturer in Thane, Maharashtra";

@@ -86,7 +86,7 @@ export function Header({ path }) {
             {NAV.map((n) => (
               <li key={n.to} className={n.sub ? "has-sub" : ""}>
                 <Link to={n.to} className={active(n.to) || (n.sub && n.sub.some((s) => active(s.to))) ? "on" : ""}>
-                  {n.label}{n.sub && <span className="caret" aria-hidden="true">⌄</span>}
+                  {n.label}{n.sub && <svg className="caret" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 4.2l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 </Link>
                 {n.sub && (
                   <div className="sub">
@@ -235,7 +235,7 @@ export function VisualAids() {
             <div className="track" style={{ transform: `translateX(-${idx * (100 / perView)}%)` }}>
               {SLIDES.map((src, k) => (
                 <div className="slide" style={{ flex: `0 0 ${100 / perView}%` }} key={src}>
-                  <img className="va-img" src={src} loading={k < 2 ? "eager" : "lazy"} width="960" height="654"
+                  <img className="va-img" ref={(el) => { if (el && el.complete) el.classList.add("ld"); }} onLoad={(e) => e.currentTarget.classList.add("ld")} src={src} loading={k < 2 ? "eager" : "lazy"} width="960" height="654"
                     alt={`Aexa Pharma product visual aid, slide ${k + 1} of ${SLIDE_COUNT}`} />
                 </div>
               ))}

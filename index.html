@@ -40,8 +40,11 @@
     <meta name="twitter:image" content="https://aexapharma.com/assets/logo.png" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/logo.png" />
-    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#F7941D" />
 
     <!-- Fonts -->
@@ -76,6 +79,17 @@
     </script>
   </head>
   <body>
+    <style>
+      #preloader{position:fixed;inset:0;z-index:9999;background:#fff;display:grid;place-items:center;transition:opacity .5s ease,visibility .5s}
+      #preloader.hide{opacity:0;visibility:hidden}
+      #preloader .box{display:flex;flex-direction:column;align-items:center;gap:18px}
+      #preloader img{width:72px;height:72px;border-radius:50%;animation:pl-pulse 1.2s ease-in-out infinite}
+
+      @keyframes pl-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    </style>
+    <div id="preloader" role="status" aria-label="Loading">
+      <div class="box"><img src="/assets/logo.png" alt="" /></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
