@@ -53,7 +53,7 @@ export function Logo() {
   return (
     <Link className="logo" to="/" aria-label={COMPANY + " home"}>
       <img src="/assets/logo.png" width="55" height="48" alt="" />
-      <span><b>AEXA</b><i>PHARMA</i></span>
+      <span><b>AEXA</b><i>{"PHARMA".split("").map((ch, n) => <em key={n}>{ch}</em>)}</i></span>
     </Link>
   );
 }
